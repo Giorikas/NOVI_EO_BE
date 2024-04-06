@@ -37,7 +37,6 @@ public class CrossSectionController {
         return ResponseEntity.created(uri).body(crossSection);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<CrossSection> updateCrossSection(@PathVariable int id, @RequestBody CrossSection crossSection){
         if (id >=0 && id < this.crossSections.size()) {
