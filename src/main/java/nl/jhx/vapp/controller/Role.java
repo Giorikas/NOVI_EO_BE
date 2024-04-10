@@ -1,6 +1,6 @@
 package nl.jhx.vapp.controller;
 
-public enum Role{
+public enum Role {
     CIVIL_ENGINEER,
     TRAFFIC_ENGINEER,
     PROJECT_LEADER
