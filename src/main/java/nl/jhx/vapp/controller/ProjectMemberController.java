@@ -11,10 +11,11 @@ import org.json.JSONObject;
 @RestController
 @RequestMapping("/register")
 public class ProjectMemberController {
+    private final ProjectMemberService projectMemberService;
 
-    @Autowired
-    private ProjectMemberService projectMemberService;
-
+    public ProjectMemberController(ProjectMemberService projectMemberService) {
+        this.projectMemberService = projectMemberService;
+    }
 
     @PostMapping(value = "")
     public ResponseEntity<String> register(@RequestBody String myData)
@@ -43,16 +44,13 @@ public class ProjectMemberController {
             return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);
         }
 
-        return ResponseEntity.ok("Test Complete");
+        return ResponseEntity.ok("User Added");
     }
-
-
 
     @GetMapping
     public ResponseEntity<String> getRegisterUser(String r)
     {
         return ResponseEntity.ok("VAPP is responding");
     }
-
 
 }

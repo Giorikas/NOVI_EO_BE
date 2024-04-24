@@ -6,5 +6,6 @@ public enum Status {
     TRAFFIC_EVALUATION,
     CIVIL_ENGINEERING,
     CIVIL_EVALUATION,
-    FINISHED
+    FINISHED,
+    MF
 }

@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProjectMemberService {
-    @Autowired
-    private ProjectMemberRepository projectMemberRepository;
+    private final ProjectMemberRepository projectMemberRepository;
+
+    public ProjectMemberService(ProjectMemberRepository projectMemberRepository) {
+        this.projectMemberRepository = projectMemberRepository;
+    }
 
     public ProjectMember createProjectMember(ProjectMemberDto projectMemberDto){
         ProjectMember projectMember = toProjectmember(projectMemberDto);
