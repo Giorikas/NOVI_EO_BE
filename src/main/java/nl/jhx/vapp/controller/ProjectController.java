@@ -5,6 +5,7 @@ import nl.jhx.vapp.model.Project;
 import nl.jhx.vapp.repository.ProjectRepository;
 import nl.jhx.vapp.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,6 @@ public class ProjectController {
         System.out.println("got request to find project with id " + id);
         ProjectDto projectDto = projectService.getProjectById(id);
         return ResponseEntity.ok().body(projectDto);
-
     }
 
     @PostMapping(value="")

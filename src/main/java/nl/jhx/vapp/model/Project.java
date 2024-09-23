@@ -1,10 +1,7 @@
 package nl.jhx.vapp.model;
 
 import jakarta.persistence.*;
-import nl.jhx.vapp.controller.Status;
-
-import java.util.HashSet;
-import java.util.Set;
+import nl.jhx.vapp.Enums.Status;
 
 @Entity
 @Table(name = "project")

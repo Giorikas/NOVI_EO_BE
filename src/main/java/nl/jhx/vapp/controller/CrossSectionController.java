@@ -1,7 +1,8 @@
 package nl.jhx.vapp.controller;
+import nl.jhx.vapp.dto.CrossSectionDto;
 import nl.jhx.vapp.model.CrossSection;
-import nl.jhx.vapp.model.CrossSectionPart;
 import nl.jhx.vapp.repository.CrossSectionRepository;
+import nl.jhx.vapp.services.CrossSectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,14 @@ import java.util.List;
 @RequestMapping("/crossSections")
 public class CrossSectionController {
 
-    @Autowired
-    private CrossSectionRepository crossSectionRepository;
-    private ArrayList<CrossSection> crossSections = new ArrayList<>();
+    private final CrossSectionRepository crossSectionRepository;
+    private final CrossSectionService crossSectionService;
+
+    public CrossSectionController(CrossSectionRepository crossSectionRepository, CrossSectionService crossSectionService) {
+        this.crossSectionRepository = crossSectionRepository;
+        this.crossSectionService = crossSectionService;
+
+    }
 
     @GetMapping
     public ResponseEntity<List<CrossSection>> getAllCrossSections(){
@@ -28,10 +34,12 @@ public class CrossSectionController {
     }
 
     @PostMapping
-    public void saveCrossSection(@RequestBody CrossSectionPart[] crossSectionParts){
-        System.out.println(crossSectionParts.length);
-
+    public ResponseEntity<Object> createCrossSection(@RequestBody CrossSectionDto dto){
+        System.out.println("CrossSection Controller: " + dto.toString());
+        CrossSectionDto crossSectionDto = crossSectionService.createCrossSection(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(crossSectionDto);
     }
+
 
 /*    @PostMapping
     public void saveCrossSection(@RequestBody CrossSection crossSection){

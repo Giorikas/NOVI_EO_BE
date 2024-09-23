@@ -1,6 +1,6 @@
 package nl.jhx.vapp.dto;
 
-import nl.jhx.vapp.controller.Status;
+import nl.jhx.vapp.Enums.Status;
 
 public class ProjectDto {
 

@@ -1,6 +1,6 @@
 package nl.jhx.vapp.dto;
 
-import nl.jhx.vapp.controller.Role;
+import nl.jhx.vapp.Enums.Role;
 
 public class ProjectMemberDto {
 

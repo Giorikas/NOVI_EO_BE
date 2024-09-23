@@ -14,44 +14,40 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
 
-  public ProjectService(ProjectRepository projectRepository)
-  {
-      this.projectRepository = projectRepository;
-  }
+    public ProjectService(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
 
     public ProjectDto getProjectById(Long id) {
         System.out.println("getProjectById");
-      Optional<Project> project = projectRepository.findById(id);
-      if (project.isPresent()) {
-          return toProjectDto(project.get());
-      } else {
-          throw new ProjectNotFoundException("The requested project coudn't be found.");
-      }
+        Optional<Project> project = projectRepository.findById(id);
+        if (project.isPresent()) {
+            return toProjectDto(project.get());
+        } else {
+            throw new ProjectNotFoundException("The requested project coudn't be found.");
+        }
     }
 
-    public ProjectDto createProject(ProjectDto projectDto)
-    {
+    public ProjectDto createProject(ProjectDto projectDto) {
         System.out.println("ProjectService.createProject" + projectDto);
         Project project = toProject(projectDto);
         projectRepository.save(project);
         return toProjectDto(project);
     }
 
-    public Project toProject(ProjectDto projectDto)
-    {
+    public Project toProject(ProjectDto projectDto) {
         Project project = new Project();
         project.setName(projectDto.getName());
         project.setStatus(projectDto.getStatus());
         return project;
     }
 
-    public ProjectDto toProjectDto(Project project)
-    {
-      try {
-          return new ProjectDto(project.getId(), project.getName(), project.getStatus());
-      } catch (Exception e){
-          return null;
-      }
+    public ProjectDto toProjectDto(Project project) {
+        try {
+            return new ProjectDto(project.getId(), project.getName(), project.getStatus());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

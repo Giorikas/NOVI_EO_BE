@@ -1,4 +1,4 @@
-package nl.jhx.vapp.controller;
+package nl.jhx.vapp.Enums;
 
 public enum Status {
     STARTED,
