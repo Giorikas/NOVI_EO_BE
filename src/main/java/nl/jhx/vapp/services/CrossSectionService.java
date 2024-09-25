@@ -39,6 +39,7 @@ public class CrossSectionService {
         crossSection.setStatus(crossSectionDto.getStatus());
         crossSection.setLeftBorder(crossSectionDto.getLeftBorder());
         crossSection.setRightBorder(crossSectionDto.getRightBorder());
+        crossSection.setWidth(crossSectionDto.getWidth());
 
         return crossSection;
     }

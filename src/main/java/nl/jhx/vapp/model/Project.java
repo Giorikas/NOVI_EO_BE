@@ -1,10 +1,9 @@
 package nl.jhx.vapp.model;
-
 import jakarta.persistence.*;
 import nl.jhx.vapp.Enums.Status;
 
 @Entity
-@Table(name = "project")
+@Table(name = "projects")
 public class Project {
 
     @Id

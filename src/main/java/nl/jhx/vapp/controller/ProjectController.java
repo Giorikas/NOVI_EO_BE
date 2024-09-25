@@ -30,10 +30,10 @@ public class ProjectController {
         return ResponseEntity.ok(projectRepository.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProjectDto> getProject(@PathVariable Long id){
-        System.out.println("got request to find project with id " + id);
-        ProjectDto projectDto = projectService.getProjectById(id);
+    @GetMapping("/{idProject}")
+    public ResponseEntity<ProjectDto> getProject(@PathVariable Long idProject){
+        System.out.println("got request to find project with id " + idProject);
+        ProjectDto projectDto = projectService.getProjectById(idProject);
         return ResponseEntity.ok().body(projectDto);
     }
 

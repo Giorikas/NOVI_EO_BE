@@ -2,6 +2,7 @@ package nl.jhx.vapp.services;
 
 import nl.jhx.vapp.dto.ProjectDto;
 import nl.jhx.vapp.exception.ProjectNotFoundException;
+import nl.jhx.vapp.exception.ShitHappensAt;
 import nl.jhx.vapp.model.Project;
 import nl.jhx.vapp.repository.ProjectRepository;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
@@ -46,7 +47,8 @@ public class ProjectService {
         try {
             return new ProjectDto(project.getId(), project.getName(), project.getStatus());
         } catch (Exception e) {
-            return null;
+            // return null;
+            throw new ShitHappensAt(e.getMessage() + " --- Creating PROJECT DTO failed! ---");
         }
     }
 

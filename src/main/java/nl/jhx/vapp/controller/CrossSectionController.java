@@ -14,8 +14,9 @@ import java.security.URIParameter;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/crossSections")
+@RequestMapping("projects/{idProject}/crossSections") // /{id}/crosssections
 public class CrossSectionController {
 
     private final CrossSectionRepository crossSectionRepository;
@@ -24,14 +25,16 @@ public class CrossSectionController {
     public CrossSectionController(CrossSectionRepository crossSectionRepository, CrossSectionService crossSectionService) {
         this.crossSectionRepository = crossSectionRepository;
         this.crossSectionService = crossSectionService;
-
     }
 
-    @GetMapping
-    public ResponseEntity<List<CrossSection>> getAllCrossSections(){
+    @GetMapping("/{idCrossSection}")
+    public ResponseEntity<List<CrossSection>> getCrossSections(Long idCrossSection){
         return ResponseEntity.ok(crossSectionRepository.findAll());
         // return new ResponseEntity<>(this.crossSections, HttpStatus.OK);
     }
+
+    /// Getmapping binnen project ("") --> IdProject
+
 
     @PostMapping
     public ResponseEntity<Object> createCrossSection(@RequestBody CrossSectionDto dto){
