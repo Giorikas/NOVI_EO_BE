@@ -10,6 +10,7 @@ public class CrossSectionPart {
     @Id
     @Column(nullable = false, unique = true)
     private String name;
+
     public String getName() {
         return name;
     }
@@ -18,14 +19,14 @@ public class CrossSectionPart {
     }
 
     @Column(nullable = false)
-    private String CspType;
-    public String getCspType() {return CspType;}
-    public void setCspType(String CspType) {this.CspType = CspType;}
+    private String type;
+    public String getType() {return type;}
+    public void setType(String type) {this.type = type;}
 
     @Column
-    private String typePavement;
-    public String getTypePavement() {return typePavement;}
-    public void setTypePavement(String typePavement) {this.typePavement = typePavement;}
+    private String pavementType;
+    public String getPavementType() {return pavementType;}
+    public void setPavementType(String pavementType) {this.pavementType = pavementType;}
 
     @Column
     private BigDecimal pavementWidth;

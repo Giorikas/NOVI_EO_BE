@@ -1,5 +1,6 @@
 package nl.jhx.vapp.dto;
 
+import jakarta.validation.constraints.NotNull;
 import nl.jhx.vapp.Enums.Status;
 import nl.jhx.vapp.Enums.CsBorder;
 
@@ -8,6 +9,8 @@ import java.math.BigDecimal;
 public class CrossSectionDto {
 
     private Long id;
+
+    @NotNull(message = "Naam mag niet leeg zijn.")
     private String name;
 
     private CsBorder leftBorder;

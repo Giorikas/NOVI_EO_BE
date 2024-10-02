@@ -7,6 +7,8 @@ import nl.jhx.vapp.model.CrossSectionPart;
 import nl.jhx.vapp.repository.CrossSectionPartRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,25 +18,28 @@ public class CrossSectionPartService {
 
     public CrossSectionPartService(CrossSectionPartRepository crossSectionPartRepository) {this.crossSectionPartRepository = crossSectionPartRepository;}
 
-    public static CrossSectionPartDto createCrossSectionPart(CrossSectionPartDto dto) {
-        System.out.println(dto.toString());
-        return dto;
-    }
+
 
     public CrossSectionPartDto getCrossSectionPartByName(String name) {
         Optional<CrossSectionPart> crossSection = crossSectionPartRepository.findById(name);
         if (crossSection.isPresent()) {
             return toCrossSectionPartDto(crossSection.get());
         } else {
-            throw new xNotFoundException("The requested cross section part could not be found.", "getCrossSectionByName");
+            throw new xNotFoundException("The requested Cross Section Part could not be found.", "getCrossSectionPartByName");
         }
+    }
+
+    public CrossSectionPartDto createCrossSectionPart(CrossSectionPartDto dto) {
+        CrossSectionPart crossSectionPart = toCrossSectionPart(dto);
+        crossSectionPartRepository.save(crossSectionPart);
+        return toCrossSectionPartDto(crossSectionPart);
     }
 
     public CrossSectionPart toCrossSectionPart(CrossSectionPartDto crossSectionPartDto) {
         CrossSectionPart crossSectionPart = new CrossSectionPart();
         crossSectionPart.setName(crossSectionPartDto.getName());
-        crossSectionPart.setCspType(crossSectionPartDto.getCspType());
-        crossSectionPart.setTypePavement(crossSectionPartDto.getPavementType());
+        crossSectionPart.setType(crossSectionPartDto.getType());
+        crossSectionPart.setPavementType(crossSectionPartDto.getPavementType());
         crossSectionPart.setPavementWidth(crossSectionPartDto.getPavementWidth());
         crossSectionPart.setDesignVelocity(crossSectionPartDto.getDesignVelocity());
         crossSectionPart.setIntensity(crossSectionPartDto.getIntensity());
@@ -43,10 +48,18 @@ public class CrossSectionPartService {
 
     public CrossSectionPartDto toCrossSectionPartDto(CrossSectionPart crossSectionPart) {
         try {
-            return new CrossSectionPartDto(crossSectionPart.getName(), crossSectionPart.getCspType(), crossSectionPart.getTypePavement(), crossSectionPart.getPavementWidth(), crossSectionPart.getDesignVelocity(), crossSectionPart.getIntensity());
+            return new CrossSectionPartDto(crossSectionPart.getName(), crossSectionPart.getType(), crossSectionPart.getPavementType(), crossSectionPart.getPavementWidth(), crossSectionPart.getDesignVelocity(), crossSectionPart.getIntensity());
         } catch (Exception e) {
             throw new ShitHappensAt(e.getMessage() + " --- Creating CsPart DTO failed! ---");
         }
+    }
+
+    public List<CrossSectionPartDto> arrayToObjects(List<CrossSectionPartDto> cspList) {
+        List<CrossSectionPartDto> cspDtos = new ArrayList<>();
+        for (CrossSectionPartDto crossSectionPartDto : cspList) {
+            cspDtos.add(createCrossSectionPart(crossSectionPartDto));
+        };
+        return cspDtos;
     }
 
 

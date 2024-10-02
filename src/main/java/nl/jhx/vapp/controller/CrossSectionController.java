@@ -30,10 +30,9 @@ public class CrossSectionController {
     @GetMapping("/{idCrossSection}")
     public ResponseEntity<List<CrossSection>> getCrossSections(Long idCrossSection){
         return ResponseEntity.ok(crossSectionRepository.findAll());
-        // return new ResponseEntity<>(this.crossSections, HttpStatus.OK);
     }
 
-    /// Getmapping binnen project ("") --> IdProject
+
 
 
     @PostMapping

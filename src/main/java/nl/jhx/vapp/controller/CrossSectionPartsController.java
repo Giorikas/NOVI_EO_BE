@@ -7,6 +7,8 @@ import nl.jhx.vapp.repository.CrossSectionRepository;
 import nl.jhx.vapp.services.CrossSectionPartService;
 import nl.jhx.vapp.services.CrossSectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,8 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/crossSections/{idCrossSection}/crossSectionParts")
+//@RequestMapping("/crossSections/{idCrossSection}/crossSectionParts")
+@RequestMapping("projects/{idProject}")
 public class CrossSectionPartsController {
 
     private final CrossSectionPartRepository crossSectionPartRepository;
@@ -28,11 +31,19 @@ public class CrossSectionPartsController {
 
     // @GetMapping("/{idCrossSectionParts}")
 
-    @PostMapping
-    public void createCrossSection(@RequestBody CrossSectionPartDto dto){
-        System.out.println("CrossSectionCtrl: " + dto.toString());
-        CrossSectionPartDto crossSectionPartDto
-        = CrossSectionPartService.createCrossSectionPart(dto);
+    @PostMapping("/crossSectionParts")
+    public ResponseEntity<Object> createCrossSectionPart(@RequestBody CrossSectionPartDto dto){
+        System.out.println("CrossSectionPartsCtrl: " + dto.toString());
+        CrossSectionPartDto crossSectionPartDto;
+        crossSectionPartDto = crossSectionPartService.createCrossSectionPart(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(crossSectionPartDto);
     }
 
+    @PostMapping("/crossSectionPartsArray")
+    public ResponseEntity<Object> createCrossSectionPart(@RequestBody List<CrossSectionPartDto> crossSectionPartDtos){
+        System.out.println("CrossSectionPartsCtrl: " + crossSectionPartDtos.toString());
+        List<CrossSectionPartDto> cspDtos = crossSectionPartService.arrayToObjects(crossSectionPartDtos);
+                // Service loop --> Array --> Objecten
+        return ResponseEntity.ok().body(cspDtos);
+    }
 }

@@ -5,15 +5,15 @@ import java.math.BigDecimal;
 public class CrossSectionPartDto {
 
     private String name;
-    private String cspType;
+    private String type;
     private String pavementType;
     private BigDecimal pavementWidth;
     private int designVelocity;
     private int intensity;
 
-    public CrossSectionPartDto(String name, String cspType, String pavementType, BigDecimal pavementWidth, int designVelocity, int intensity) {
+    public CrossSectionPartDto(String name, String type, String pavementType, BigDecimal pavementWidth, int designVelocity, int intensity) {
         this.name = name;
-        this.cspType = cspType;
+        this.type = type;
         this.pavementType = pavementType;
         this.pavementWidth = pavementWidth;
         this.designVelocity = designVelocity;
@@ -28,10 +28,10 @@ public class CrossSectionPartDto {
         this.name = name;
     }
 
-    public String getCspType() { return cspType; }
+    public String getType() { return type; }
 
-    public void setType(String cspType) {
-        this.cspType = cspType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPavementType() { return pavementType; }
