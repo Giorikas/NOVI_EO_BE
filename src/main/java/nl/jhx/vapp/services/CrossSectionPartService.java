@@ -25,7 +25,7 @@ public class CrossSectionPartService {
         if (crossSection.isPresent()) {
             return toCrossSectionPartDto(crossSection.get());
         } else {
-            throw new xNotFoundException("The requested Cross Section Part could not be found.", "getCrossSectionPartByName");
+            throw new xNotFoundException("The requested Cross Section Part could not be found.", "getCrossSectionPartByName", crossSection.toString());
         }
     }
 

@@ -1,4 +1,5 @@
 package nl.jhx.vapp.controller;
+
 import nl.jhx.vapp.dto.CrossSectionDto;
 import nl.jhx.vapp.model.CrossSection;
 import nl.jhx.vapp.repository.CrossSectionRepository;
@@ -27,46 +28,34 @@ public class CrossSectionController {
         this.crossSectionService = crossSectionService;
     }
 
-    @GetMapping("/{idCrossSection}")
-    public ResponseEntity<List<CrossSection>> getCrossSections(Long idCrossSection){
+    @GetMapping
+    public ResponseEntity<List<CrossSection>> getCrossSections(Long idCrossSection) {
         return ResponseEntity.ok(crossSectionRepository.findAll());
     }
 
-
-
+    @GetMapping("/{idCrossSection}")
+    public ResponseEntity<CrossSectionDto> getCrossSection(@PathVariable Long idCrossSection) {
+        System.out.println("GET CrossSection with id: " + idCrossSection);
+        CrossSectionDto crossSectionDto = crossSectionService.getCrossSectionById(idCrossSection);
+        return ResponseEntity.ok().body(crossSectionDto);
+    }
 
     @PostMapping
-    public ResponseEntity<Object> createCrossSection(@RequestBody CrossSectionDto dto){
+    public ResponseEntity<Object> createCrossSection(@RequestBody CrossSectionDto dto) {
         System.out.println("CrossSection Controller: " + dto.toString());
         CrossSectionDto crossSectionDto = crossSectionService.createCrossSection(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(crossSectionDto);
     }
+/*
+    @PutMapping("/{id}")
+    public ResponseEntity<CrossSection> updateCrossSection(@PathVariable long id, @RequestBody CrossSection crossSection) {
+        if (id >= 0 && id < this.crossSection.size()) {
+            this.crossSection.set(id, crossSection);
+            return new ResponseEntity<>(crossSection, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+    }
+    */
 
-
-/*    @PostMapping
-    public void saveCrossSection(@RequestBody CrossSection crossSection){
-        crossSectionRepository.save(crossSection);
-
-    }*/
-
-//    @PostMapping
-//    public ResponseEntity<CrossSection> createCrossSection(@RequestBody CrossSection crossSection){
-//        crossSectionRepository.save(crossSection);
-//        URI uri = URI.create(
-//                ServletUriComponentsBuilder
-//                        .fromCurrentRequest()
-//                        .path("/" + crossSection.getId()).toUriString()
-//        );
-//        return ResponseEntity.created(uri).body(crossSection);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<CrossSection> updateCrossSection(@PathVariable int id, @RequestBody CrossSection crossSection){
-//        if (id >=0 && id < this.crossSections.size()) {
-//            this.crossSections.set(id, crossSection);
-//            return new ResponseEntity<>(crossSection, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-//        }
-//    }
 }

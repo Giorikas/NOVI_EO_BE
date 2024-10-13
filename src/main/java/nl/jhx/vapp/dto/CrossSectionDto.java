@@ -54,7 +54,6 @@ public class CrossSectionDto {
         this.width = width;
    }
 
-
     public Long getId() {return id;}
     public String getName() {return name;}
     public CsBorder getLeftBorder() {return leftBorder;}

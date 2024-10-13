@@ -3,6 +3,9 @@ package nl.jhx.vapp.model;
 import jakarta.persistence.*;
 import nl.jhx.vapp.Enums.CsBorder;
 import nl.jhx.vapp.Enums.Status;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import java.math.BigDecimal;
 
@@ -22,6 +25,13 @@ public class CrossSection {
         this.id = id;
     }
 
+    @OneToOne
+    //@JoinColumn(name = "Project_id", referencedColumnName = "id")
+    //@NotFound(action = NotFoundAction.IGNORE)
+    private Project project;
+
+    public Project getProject() {return project;}
+    public void setProject(Project project) {this.project = project;}
 
     @Column(name="name")
     private String name;
@@ -54,9 +64,19 @@ public class CrossSection {
 
     public BigDecimal getWidth() {return width;}
     public void setWidth(BigDecimal width) {this.width = width;}
+
+
     /* For precision BigDec and not f or d. --> float: (1 == 1/3 + 1/3 + 1/3) => false
+*/
 
-     mm not an option when working with incline in later developments.. --> CivilEng.
-     */
+    @OneToOne(mappedBy = "crossSection", optional = false)
+    private Project project2;
 
+    public Project getProject2() {
+        return project2;
+    }
+
+    public void setProject2(Project project2) {
+        this.project2 = project2;
+    }
 }

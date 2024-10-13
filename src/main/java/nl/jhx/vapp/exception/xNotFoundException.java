@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class xNotFoundException extends RuntimeException {
-    public xNotFoundException(String message, String itemNotFound) {
+    public xNotFoundException(String message, String itemNotFound, String DTO) {
         super(message);
         System.out.println("Not found: "+ itemNotFound + "Error:" + message);
     }

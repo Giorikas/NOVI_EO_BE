@@ -23,7 +23,7 @@ public class CrossSectionService {
         if (crossSection.isPresent()) {
             return toCrossSectionDto(crossSection.get());
         } else {
-            throw new xNotFoundException("Requested crossSection could not be found.", "Item goes here, but I have to work this part out..");
+            throw new xNotFoundException("Requested crossSection could not be found.", "Item goes here, but I have to work this part out..", crossSection.toString() );
         }
     }
 

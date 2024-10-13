@@ -1,4 +1,5 @@
 package nl.jhx.vapp.controller;
+
 import nl.jhx.vapp.dto.CrossSectionPartDto;
 import nl.jhx.vapp.model.CrossSection;
 import nl.jhx.vapp.model.CrossSectionPart;
@@ -24,15 +25,19 @@ public class CrossSectionPartsController {
     private final CrossSectionPartRepository crossSectionPartRepository;
     private final CrossSectionPartService crossSectionPartService;
 
-    public CrossSectionPartsController(CrossSectionPartRepository crossSectionPartRepository,CrossSectionPartService crossSectionPartService) {
+    public CrossSectionPartsController(CrossSectionPartRepository crossSectionPartRepository, CrossSectionPartService crossSectionPartService) {
         this.crossSectionPartRepository = crossSectionPartRepository;
         this.crossSectionPartService = crossSectionPartService;
     }
 
-    // @GetMapping("/{idCrossSectionParts}")
+    @GetMapping("/{idCrossSectionParts}")
+    public ResponseEntity<List<CrossSectionPart>> getCrossSectionParts(@PathVariable("idProject") String idProject) {
+        System.out.println("Till Here: GetRequest CrossSectionParts");
+        return ResponseEntity.ok(crossSectionPartRepository.findAll());
+    }
 
     @PostMapping("/crossSectionParts")
-    public ResponseEntity<Object> createCrossSectionPart(@RequestBody CrossSectionPartDto dto){
+    public ResponseEntity<Object> createCrossSectionPart(@RequestBody CrossSectionPartDto dto) {
         System.out.println("CrossSectionPartsCtrl: " + dto.toString());
         CrossSectionPartDto crossSectionPartDto;
         crossSectionPartDto = crossSectionPartService.createCrossSectionPart(dto);
@@ -40,10 +45,10 @@ public class CrossSectionPartsController {
     }
 
     @PostMapping("/crossSectionPartsArray")
-    public ResponseEntity<Object> createCrossSectionPart(@RequestBody List<CrossSectionPartDto> crossSectionPartDtos){
+    public ResponseEntity<Object> createCrossSectionPart(@RequestBody List<CrossSectionPartDto> crossSectionPartDtos) {
         System.out.println("CrossSectionPartsCtrl: " + crossSectionPartDtos.toString());
         List<CrossSectionPartDto> cspDtos = crossSectionPartService.arrayToObjects(crossSectionPartDtos);
-                // Service loop --> Array --> Objecten
+        // Service loop --> Array --> Objecten
         return ResponseEntity.ok().body(cspDtos);
     }
 }
