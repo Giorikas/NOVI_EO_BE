@@ -1,4 +1,4 @@
-package nl.jhx.vapp.dto;
+package nl.jhx.vapp.dtos;
 
 import nl.jhx.vapp.Enums.Role;
 
@@ -18,7 +18,6 @@ public class ProjectMemberDto {
             default -> null;
         };
     }
-
 
     public ProjectMemberDto(String name, String email, String password, String role) throws Exception {
         this.name = name;

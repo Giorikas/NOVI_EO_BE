@@ -1,4 +1,4 @@
-package nl.jhx.vapp.dto;
+package nl.jhx.vapp.dtos;
 
 public class StatusFromString {
 

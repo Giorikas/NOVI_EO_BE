@@ -1,4 +1,4 @@
-package nl.jhx.vapp.dto;
+package nl.jhx.vapp.dtos;
 
 import jakarta.validation.constraints.NotNull;
 import nl.jhx.vapp.Enums.Status;
@@ -6,7 +6,7 @@ import nl.jhx.vapp.Enums.CsBorder;
 
 import java.math.BigDecimal;
 
-public class CrossSectionDto {
+public class CrossSectionInputDto {
 
     private Long id;
 
@@ -34,10 +34,11 @@ public class CrossSectionDto {
 
    private CsBorder getBorderFromString(String border) {
        System.out.println(border);
+       System.out.println("Got to this chk");
         return switch (border) {
             case "GEVEL" -> CsBorder.GEVEL;
             case "BOMEN" -> CsBorder.BOMEN;
-            case "BERM_(OBSTAKELVRIJ)" -> CsBorder.BERM;
+            case "PEER" -> CsBorder.BERM;
             case "SLOOT" -> CsBorder.SLOOT;
             case "KADE" -> CsBorder.KADE;
             case "WATER" -> CsBorder.WATER;
@@ -45,14 +46,17 @@ public class CrossSectionDto {
         };
    }
 
-   public CrossSectionDto(Long id, String name, Status status, CsBorder leftBorder, CsBorder rightBorder, BigDecimal width) {
+   public CrossSectionInputDto(Long id, String name, Status status, CsBorder leftBorder, CsBorder rightBorder, BigDecimal width) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.leftBorder = leftBorder;
         this.rightBorder = rightBorder;
         this.width = width;
+
    }
+
+
 
     public Long getId() {return id;}
     public String getName() {return name;}

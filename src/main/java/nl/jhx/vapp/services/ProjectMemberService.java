@@ -1,8 +1,7 @@
 package nl.jhx.vapp.services;
-import nl.jhx.vapp.dto.ProjectMemberDto;
+import nl.jhx.vapp.dtos.ProjectMemberDto;
 import nl.jhx.vapp.model.ProjectMember;
 import nl.jhx.vapp.repository.ProjectMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,14 +27,6 @@ public class ProjectMemberService {
         projectMember.setRole(projectMemberDto.getRole().toString());
 
         return projectMember;
-    }
-
-    public static ProjectMemberDto fromProjectMember(ProjectMember projectMember){
-        try {
-            return new ProjectMemberDto(projectMember.getName(), projectMember.getEmail(), projectMember.getPassword(), projectMember.getRole());
-        } catch (Exception e) {
-            return null;
-        }
     }
 
 }

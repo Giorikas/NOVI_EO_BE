@@ -13,12 +13,11 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true, updatable = false)
     private long id;
-
     public long getId() { return id; }
 
     @OneToOne
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
-//    @JoinColumn(name = "CrossSection_id", referencedColumnName = "id")
+    @JoinColumn(name = "CrossSection_id", referencedColumnName = "id") // mss uitcomment.
     @NotFound(action = NotFoundAction.IGNORE)
     private CrossSection crossSection;
 

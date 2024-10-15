@@ -1,11 +1,10 @@
 package nl.jhx.vapp.services;
 
-import nl.jhx.vapp.dto.ProjectDto;
+import nl.jhx.vapp.dtos.ProjectDto;
 import nl.jhx.vapp.exception.ProjectNotFoundException;
 import nl.jhx.vapp.exception.ShitHappensAt;
 import nl.jhx.vapp.model.Project;
 import nl.jhx.vapp.repository.ProjectRepository;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -31,18 +30,19 @@ public class ProjectService {
 
     public ProjectDto createProject(ProjectDto projectDto) {
         System.out.println("ProjectService.createProject" + projectDto);
+        System.out.println(projectDto);
         Project project = toProject(projectDto);
         projectRepository.save(project);
         return toProjectDto(project);
     }
-
+    //From front to back
     public Project toProject(ProjectDto projectDto) {
         Project project = new Project();
         project.setName(projectDto.getName());
         project.setStatus(projectDto.getStatus());
         return project;
     }
-
+    // from Back to front
     public ProjectDto toProjectDto(Project project) {
         try {
             return new ProjectDto(project.getId(), project.getName(), project.getStatus());

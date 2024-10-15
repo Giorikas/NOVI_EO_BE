@@ -25,7 +25,7 @@ public class CrossSection {
         this.id = id;
     }
 
-    @OneToOne
+    @OneToOne // (mappedBy = "crossSection")
     //@JoinColumn(name = "Project_id", referencedColumnName = "id")
     //@NotFound(action = NotFoundAction.IGNORE)
     private Project project;

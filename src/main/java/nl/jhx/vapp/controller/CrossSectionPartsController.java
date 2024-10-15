@@ -1,19 +1,13 @@
 package nl.jhx.vapp.controller;
 
-import nl.jhx.vapp.dto.CrossSectionPartDto;
-import nl.jhx.vapp.model.CrossSection;
+import nl.jhx.vapp.dtos.CrossSectionPartDto;
 import nl.jhx.vapp.model.CrossSectionPart;
 import nl.jhx.vapp.repository.CrossSectionPartRepository;
-import nl.jhx.vapp.repository.CrossSectionRepository;
 import nl.jhx.vapp.services.CrossSectionPartService;
-import nl.jhx.vapp.services.CrossSectionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin

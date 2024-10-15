@@ -1,4 +1,4 @@
-package nl.jhx.vapp.dto;
+package nl.jhx.vapp.dtos;
 
 import nl.jhx.vapp.Enums.Status;
 
@@ -17,14 +17,17 @@ public class ProjectDto {
             case "CIVIL_ENGINEERING"-> Status.CIVIL_ENGINEERING;
             case "CIVIL_EVALUATION"-> Status.CIVIL_EVALUATION;
             case "FINISHED"-> Status.FINISHED;
-            default -> Status.MF;
+            default -> null;
         };
     }
 
-    public ProjectDto(Long id, String name, Status status) {
+    public ProjectDto(Long id, String name, Status status) throws Exception{
         this.id = id;
         this.name = name;
         this.status = status;
+        if (this.status == null) {
+            throw new Exception("Status is null"+ status);
+        }
     }
 
     public Long getId() {return id;}

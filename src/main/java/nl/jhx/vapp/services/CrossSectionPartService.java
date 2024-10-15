@@ -1,6 +1,6 @@
 package nl.jhx.vapp.services;
 
-import nl.jhx.vapp.dto.CrossSectionPartDto;
+import nl.jhx.vapp.dtos.CrossSectionPartDto;
 import nl.jhx.vapp.exception.ShitHappensAt;
 import nl.jhx.vapp.exception.xNotFoundException;
 import nl.jhx.vapp.model.CrossSectionPart;
